@@ -4,10 +4,9 @@ module.exports = ({ env }) => {
       defaultConnection: 'default',
       connections: {
         default: {
-          client: 'postgress',
           connector: 'bookshelf',
           settings: {
-            client: 'postgress',
+            client: 'postgres',
             host: env('DATABASE_HOST', '127.0.0.1'),
             port: env('DATABASE_PORT', 27017),
             name: env('DATABASE_NAME', 'strapi'),
@@ -27,7 +26,7 @@ module.exports = ({ env }) => {
         default: {
           connector: 'bookshelf',
           settings: {
-            client: 'postgress',
+            client: 'sqlite',
             filename: env('DATABASE_FILENAME', '.tmp/data.db'),
           },
           options: {
