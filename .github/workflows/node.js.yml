@@ -25,4 +25,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: git fetch --all --unshallow
+    - run: git pull origin master
     - run: git push https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git HEAD
