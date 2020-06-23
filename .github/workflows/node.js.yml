@@ -22,7 +22,7 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "strapi-101" #Must be unique in Heroku
-          heroku_email: "mochammad.fadholi.st@gmail.com"
+          heroku_email: "mfadholi711@gmail.com"
           buildpack: "" #OPTIONAL
           branch: "HEAD" #OPTIONAL and DEFAULT - 'HEAD' (a.k.a your current branch)
           dontuseforce: false #OPTIONAL and DEFAULT - false

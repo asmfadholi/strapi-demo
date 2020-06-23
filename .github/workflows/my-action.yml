@@ -1,0 +1,13 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: git push https://heroku:${{secrets.HEROKU_API_KEY}}@git.heroku.com/${{secrets.APP_NAME}}.git HEAD
