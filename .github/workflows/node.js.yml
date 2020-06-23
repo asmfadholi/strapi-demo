@@ -1,12 +1,10 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: DEPLOY
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
@@ -20,10 +18,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: git fetch --all --unshallow
-    - run: git pull origin master
-    - run: git push https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git HEAD
+    - uses: asmfadholi/heroku-deploy@v3.0.5 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "strapi-101" #Must be unique in Heroku
+          heroku_email: "mochammad.fadholi.st@gmail.com"
+          buildpack: "" #OPTIONAL
+          branch: "HEAD" #OPTIONAL and DEFAULT - 'HEAD' (a.k.a your current branch)
+          dontuseforce: false #OPTIONAL and DEFAULT - false
+          usedocker: false #OPTIONAL and DEFAULT - false
+          appdir: "" #OPTIONAL and DEFAULT - "". This is useful if the api you're deploying is in a subfolder
+          docker_heroku_process_type: "" #OPTIONAL and DEFAULT - "web"
